@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
     shortId : {
-        typeof: String,
-        required: true,
+        type: String,
+        required : true,
         unique: true,
     },
     redirectUrl : {
-        typeof: String,
-        required: String,
+        type: String,
+        required: true,
     },
-    visitHistory : [{timestamps : { typeof: Number }}]
+    visitHistory : [{timestamp : { type: Number }}]
 },{timestamps: true})
 
 //Model

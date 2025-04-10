@@ -4,9 +4,13 @@ const connectMongoDb = require("./connection");
 
 const{} = require('./models/url');
 
+const urlRoute = require('./routes/url')
+
 
 const app = express();
 const PORT = 8001;
+
+
 
 //Mongoose connection
 connectMongoDb("mongodb://127.0.0.1:27017/url-shortner").then(() => {
@@ -14,7 +18,9 @@ connectMongoDb("mongodb://127.0.0.1:27017/url-shortner").then(() => {
 });
 
 //Middleware to fetch data
-app.use(express.urlencoded({extended: false}));
+// app.use(express.urlencoded({extended: false}));
+app.use(express.json())
+app.use("/url", urlRoute);
 
 
 //Server connected on port
