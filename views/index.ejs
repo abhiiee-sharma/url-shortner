@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Shortener</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 600px;
+      margin-top: 100px;
+      text-align: center;
+    }
+    .short-url {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mb-4">🔗 URL Shortener</h1>
+    <form action="/url" method="POST">
+      <div class="input-group mb-3">
+        <input type="url" class="form-control" name="url" placeholder="https://google.com" required>
+        <button class="btn btn-primary" type="submit">Shorten</button>
+      </div>
+    </form>
+
+    <% if (locals.id) { %>
+      <div class="short-url alert alert-success">
+        <p>Your short URL:</p>
+        <a href="/url/<%= id %>" target="_blank">http://localhost:8001/url/<%= id %></a>
+      </div>
+    <% } %>
+
+    <% if (locals.urls) { %>
+      <div class="container mt-5">
+        <h3 class="mb-4">📄 All Shortened URLs</h3>
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">S. No.</th>
+              <th scope="col">Short URL</th>
+              <th scope="col">Redirect URL</th>
+              <th scope="col">Total Clicks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% urls.forEach((url, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td>
+                  <a href="/url/<%= url.shortId %>" target="_blank">
+                    <%= url.shortId %>
+                  </a>
+                </td>
+                <td>
+                  <a href="<%= url.redirectUrl %>" target="_blank">
+                    <%= url.redirectUrl %>
+                  </a>
+                </td>
+                <td><%= url.visitHistory.length %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+     
+
+      
+  </div>
+</body>
+</html>
+ 

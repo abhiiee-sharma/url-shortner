@@ -12,7 +12,10 @@ async function handleGenerateShortUrl(req, res) {
         visitHistory: []
     })
 
-    return res.json({id : shortId })
+    return res.render("index",{id : shortId});
+
+    //uncoment this to get the json responde
+    // return res.json({id : shortId })
 }
 
 async function handleRedirectToOriginal(req, res) {
