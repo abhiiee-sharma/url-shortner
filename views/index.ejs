@@ -31,7 +31,9 @@
     <% if (locals.id) { %>
       <div class="short-url alert alert-success">
         <p>Your short URL:</p>
-        <a href="/url/<%= id %>" target="_blank">http://localhost:8001/url/<%= id %></a>
+        <a href="<%= process.env.BASE_URL || 'http://localhost:8001' %>/url/<%= id %>">
+          <%= process.env.BASE_URL || 'http://localhost:8001' %>/url/<%= id %>
+        </a>
       </div>
     <% } %>
 
