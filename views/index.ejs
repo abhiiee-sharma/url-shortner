@@ -16,15 +16,33 @@
     .short-url {
       margin-top: 20px;
     }
+    .disclaimer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background: #e5e7eb;
+      padding: 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-top: 1px solid #ccc;
+    }
+
+    .disclaimer strong {
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
 <div class="container">
     <h1 class="mb-4">🔗 URL Shortener</h1>
     <form action="/url" method="POST">
-      <div class="input-group mb-3">
-        <input type="url" class="form-control" name="url" placeholder="https://google.com" required>
-        <button class="btn btn-primary" type="submit">Shorten</button>
+      <div class="mb-3 text-start">
+        <label for="urlInput" class="form-label">Enter original URL</label>
+        <div class="input-group">
+          <input id="urlInput" type="url" class="form-control" name="url" placeholder="https://google.com" required>
+          <button class="btn btn-primary" type="submit">Shorten</button>
+        </div>
       </div>
     </form>
 
@@ -70,10 +88,145 @@
         </table>
       </div>
     <% } %>
-     
 
-      
-  </div>
+</div>
+
+<div class="disclaimer">
+  <em>
+    Disclaimer: This URL shortener project was developed solely for educational and implementation purposes. 
+    <strong>Render's randomized subdomain—is longer than ideal, which may seem counterintuitive for a URL shortener. 
+    We sincerely apologize for this limitation.</strong> The primary objective was to explore backend development, 
+    MongoDB integration, and full-stack deployment workflows.
+  </em>
+</div>
+
 </body>
 </html>
- 
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>URL Shortener</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: #f3f4f6;
+      color: #333;
+    }
+
+    .container-flex {
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      gap: 2rem;
+    }
+
+    .left-panel, .right-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      width: 48%;
+    }
+
+    .divider {
+      width: 1px;
+      background: #ccc;
+      height: 90%;
+    }
+
+    .short-url {
+      margin-top: 20px;
+    }
+
+    input[type="url"] {
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      background: #007aff;
+      color: white;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #0051c7;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+<div class="container-flex">
+
+  <div class="left-panel">
+    <h2 class="mb-4">🔗 Shorten a Link</h2>
+    <form action="/url" method="POST">
+      <label for="url">Enter original URL</label>
+      <input type="url" name="url" id="url" placeholder="https://example.com" required>
+      <button type="submit">Shorten</button>
+    </form>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="right-panel">
+    <% if (locals.id) { %>
+      <div class="short-url alert alert-success">
+        <p><strong>Your short URL:</strong></p>
+        <a href="<%= process.env.BASE_URL || 'http://localhost:8001' %>/url/<%= id %>" target="_blank">
+          <%= process.env.BASE_URL || 'http://localhost:8001' %>/url/<%= id %>
+        </a>
+      </div>
+    <% } %>
+
+    <% if (locals.urls) { %>
+      <h4 class="mt-4">📄 All Shortened URLs</h4>
+      <table class="table mt-3 table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>S. No.</th>
+            <th>Short URL</th>
+            <th>Redirect URL</th>
+            <th>Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% urls.forEach((url, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><a href="/url/<%= url.shortId %>" target="_blank"><%= url.shortId %></a></td>
+              <td><a href="<%= url.redirectUrl %>" target="_blank"><%= url.redirectUrl %></a></td>
+              <td><%= url.visitHistory.length %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+
+</div>
+
+
+
+</body>
+</html> -->
